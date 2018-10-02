@@ -36,6 +36,10 @@ class EnumValidator extends ChoiceValidator
         $entity = $constraint->entity;
         $constraint->choices = $entity::getValues();
 
+        if ($value !== null && is_int(current($constraint->choices))) {
+            $value = intval($value);
+        }
+
         parent::validate($value, $constraint);
     }
 }
